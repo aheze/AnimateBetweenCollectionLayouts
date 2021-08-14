@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		3C19669E268045B500F9F9B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C19669D268045B500F9F9B7 /* Assets.xcassets */; };
 		3C1966A1268045B500F9F9B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C19669F268045B500F9F9B7 /* LaunchScreen.storyboard */; };
 		3C748BF22684D4EF003DD79E /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C748BF12684D4EF003DD79E /* FlowLayout.swift */; };
+		3C8E7CB826C87E66000ABC48 /* LocalConsole in Frameworks */ = {isa = PBXBuildFile; productRef = 3C8E7CB726C87E66000ABC48 /* LocalConsole */; };
+		3C8E7CBA26C88061000ABC48 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8E7CB926C88061000ABC48 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,7 @@
 		3C1966A0268045B500F9F9B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C1966A2268045B500F9F9B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C748BF12684D4EF003DD79E /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		3C8E7CB926C88061000ABC48 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C8E7CB826C87E66000ABC48 /* LocalConsole in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +66,7 @@
 				3C196696268045B300F9F9B7 /* SceneDelegate.swift */,
 				3C196698268045B300F9F9B7 /* ViewController.swift */,
 				3C748BF12684D4EF003DD79E /* FlowLayout.swift */,
+				3C8E7CB926C88061000ABC48 /* Utilities.swift */,
 				3C19669A268045B300F9F9B7 /* Main.storyboard */,
 				3C19669D268045B500F9F9B7 /* Assets.xcassets */,
 				3C19669F268045B500F9F9B7 /* LaunchScreen.storyboard */,
@@ -86,6 +91,9 @@
 			dependencies = (
 			);
 			name = AnimateBetweenCollectionLayouts;
+			packageProductDependencies = (
+				3C8E7CB726C87E66000ABC48 /* LocalConsole */,
+			);
 			productName = TransitioningCollectionLayout;
 			productReference = 3C196691268045B300F9F9B7 /* AnimateBetweenCollectionLayouts.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +121,9 @@
 				Base,
 			);
 			mainGroup = 3C196688268045B300F9F9B7;
+			packageReferences = (
+				3C8E7CB626C87E66000ABC48 /* XCRemoteSwiftPackageReference "LocalConsole" */,
+			);
 			productRefGroup = 3C196692268045B300F9F9B7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,6 +154,7 @@
 				3C196699268045B300F9F9B7 /* ViewController.swift in Sources */,
 				3C748BF22684D4EF003DD79E /* FlowLayout.swift in Sources */,
 				3C196695268045B300F9F9B7 /* AppDelegate.swift in Sources */,
+				3C8E7CBA26C88061000ABC48 /* Utilities.swift in Sources */,
 				3C196697268045B300F9F9B7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +357,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3C8E7CB626C87E66000ABC48 /* XCRemoteSwiftPackageReference "LocalConsole" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/duraidabdul/LocalConsole/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C8E7CB726C87E66000ABC48 /* LocalConsole */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C8E7CB626C87E66000ABC48 /* XCRemoteSwiftPackageReference "LocalConsole" */;
+			productName = LocalConsole;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3C196689268045B300F9F9B7 /* Project object */;
 }

@@ -12,8 +12,12 @@ enum LayoutType {
     case strip
 }
 
-class FlowLayout: UICollectionViewFlowLayout {
+struct SharedLayout {
+    static var previousTopIndexPath: IndexPath?
+}
 
+class FlowLayout: UICollectionViewFlowLayout {
+    
     var layoutType: LayoutType
     var sizeForListItemAt: ((IndexPath) -> CGSize)? /// get size for list item
     var sizeForStripItemAt: ((IndexPath) -> CGSize)? /// get size for strip item
@@ -24,6 +28,7 @@ class FlowLayout: UICollectionViewFlowLayout {
     
     override func prepare() { /// configure the cells' frames
         super.prepare()
+        print("preparing \(layoutType)")
         
         guard let collectionView = collectionView else { return }
         let itemCount = collectionView.numberOfItems(inSection: 0) /// I only have 1 section
@@ -68,6 +73,34 @@ class FlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return layoutAttributes.filter { rect.intersects($0.frame) }
     }
+    
+    override func prepareForTransition(to newLayout: UICollectionViewLayout) {
+        print("\(layoutType) layout is being removed")
+        guard let collectionView = collectionView else { return }
+        
+        if let currentIndexPath = collectionView.indexPathForItem(at: collectionView.contentOffset) {
+            SharedLayout.previousTopIndexPath = currentIndexPath
+        
+            if let cell = collectionView.cellForItem(at: currentIndexPath) as? Cell {
+                cell.colorView.backgroundColor = UIColor.random
+            }
+        }
+    }
+    override func prepareForTransition(from oldLayout: UICollectionViewLayout) {
+//        print("\(layoutType) layout is being added")
+    }
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
+//        print("TARGET CALLED FOR \(layoutType). Proposed: \(proposedContentOffset)")
+        guard let previousTopIndexPath = SharedLayout.previousTopIndexPath else { return proposedContentOffset }
+
+        if layoutAttributes.count > previousTopIndexPath.item {
+            let attributes = layoutAttributes[previousTopIndexPath.item]
+            let newOriginForOldIndex = attributes.frame.origin
+            return newOriginForOldIndex
+        } else {
+            return proposedContentOffset
+        }
+    }
 
     /// initialize with a layout
     init(layoutType: LayoutType) {
@@ -84,3 +117,4 @@ class FlowLayout: UICollectionViewFlowLayout {
         return context
     }
 }
+

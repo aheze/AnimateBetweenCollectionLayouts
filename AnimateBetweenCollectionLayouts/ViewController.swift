@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
     @IBAction func toggleExpandPressed(_ sender: Any) {
         
+        print("contentOffset before setting layout: \(collectionView.contentOffset)")
+        
         isExpanded.toggle()
         if isExpanded {
             collectionView.setCollectionViewLayout(listLayout, animated: true)
@@ -25,7 +27,7 @@ class ViewController: UIViewController {
             collectionView.setCollectionViewLayout(stripLayout, animated: true)
             collectionViewHeightConstraint.constant = 60
         }
-        UIView.animate(withDuration: 0.6) {
+        UIView.animate(withDuration: 0.6, delay: 1) {
             self.view.layoutIfNeeded()
         }
     }
